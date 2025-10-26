@@ -1,0 +1,16 @@
+{
+  "name": "express-static-tailwind",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node app.js",
+    "build:css": "npx tailwindcss -i ./public/css/style.css -o ./public/css/output.css --watch"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "ejs": "^3.1.9"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.13"
+  }
+}
