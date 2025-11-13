@@ -1,9 +1,10 @@
 import express from 'express'
 import { connectDB } from './config/db.mjs';
+import { Person } from './models/Person.mjs';
 
 const app = express();
 app.use(express());
-
+app.use(express.json());
 const port = 3000;
 
 await connectDB();
@@ -13,9 +14,29 @@ app.get('/',(req, res)=>{
    res.send('hello express')
 })
 
-app.post('/person', express.json(), (req, res)=>{
-    console.log(req.body);
-    res.send('Person data received');
+
+// Save person data to MongoDB database 
+app.post('/person', async (req, res)=>{
+    const {email, name, age} = req.body;
+    // Here, you would typically add code to save the person data to the database.
+    const newPerson = new Person({
+        name,
+        age,
+        email
+    })
+    await newPerson.save();
+    console.log(newPerson);
+    res.send('Person Added Successfully');
+})
+
+//update person route
+
+app.put('/person', async (req, res)=>{
+    const {id} = req.body;
+
+    const personData = await Person.findByIdAndUpdate(id, {age:'32'})
+    console.log(personData);
+    res.send('Person Updated Successfully');
 })
 
 app.listen(port,console.log(`Server is running on port: ${port}`));
