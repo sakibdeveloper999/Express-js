@@ -23,6 +23,11 @@ app.get('/fetch', (req, res) => {
     res.send('API Called')
 })
 
+// Delete the cookie when the user visits the /delete route
+app.get('/remove-cookie', (req, res) => {
+    res.clearCookie('name');
+    res.send('Cookie Removed Successfully');
+});
 
 
 app.listen(PORT, () => {
