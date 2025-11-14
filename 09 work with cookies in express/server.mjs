@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-
+// Set a cookie when the user visits the root route
 app.get('/', (req, res) => {
     //res.cookie('name', 'ExpressUser',{maxAge: 360000});
     res.cookie('name', 'ExpressUser');
