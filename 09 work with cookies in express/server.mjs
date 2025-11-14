@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
     res.send('Welcome to the Express.js server!');
 });
 
-
+// Read the cookie when the user visits the /fetch route
 app.get('/fetch', (req, res) => {
     console.log(req.cookies);
     res.send('API Called')
