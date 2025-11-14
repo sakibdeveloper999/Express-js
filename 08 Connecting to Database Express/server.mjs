@@ -34,9 +34,21 @@ app.post('/person', async (req, res)=>{
 app.put('/person', async (req, res)=>{
     const {id} = req.body;
 
-    const personData = await Person.findByIdAndUpdate(id, {age:'32'})
+    const personData = await Person.findByIdAndUpdate(id, {age:'13'})
     console.log(personData);
     res.send('Person Updated Successfully');
 })
+
+
+// Delete person route
+
+app.delete('/person/:id',async (req, res)=>{
+
+    const {id} = req.params
+    await Person.findByIdAndDelete(id)
+    res.send('User Deleted')
+    console.log('User Deleted ');
+})
+
 
 app.listen(port,console.log(`Server is running on port: ${port}`));
